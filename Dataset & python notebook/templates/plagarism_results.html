@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Check Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8fafa;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-top: 50px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #28a745;
+            margin-top: 20px;
+        }
+
+        .no-plagiarism {
+            color: #dc3545;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Plagiarism Check Results</h1>
+
+    {% if similarity_scores %}
+    <ul>
+        {% for score in similarity_scores %}
+        <li>Similarity Score between Doc {{ score[0] + 1 }} and Doc {{ score[1] + 1 }}: {{ score[2] }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="no-plagiarism">No plagiarism found.</p>
+    {% endif %}
+</body>
+
+</html>
+
+
